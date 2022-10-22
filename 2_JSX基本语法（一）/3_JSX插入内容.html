@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+            names: ["zz", "xx", "ll"],
+            cnt: 1,
+            undef: undefined,
+            nul: null,
+            bool: true,
+            friend: {
+              name: "asd",
+            },
+            movies: ["xxx", "yyy", "zzz", "mmm"],
+          };
+        }
+
+        render() {
+          const { msg, names, cnt } = this.state;
+          const { undef, nul, bool } = this.state;
+          const { friend } = this.state;
+
+          return (
+            <div>
+              {/* 1.Number/String/Array 可以直接显示出来 */}
+              <h2>{msg}</h2>
+              <h2>{names}</h2>
+              <h2>{cnt}</h2>
+
+              {/* 2.undefined/null/boolean */}
+              <h2>{String(undef)}</h2>
+              <h2>{nul + ""}</h2>
+              <h2>{bool.toString()}</h2>
+
+              {/* 3.object类型不能作为子元素显示 */}
+              {/* <h2>{friend}</h2> */}
+              <h2>{friend.name}</h2>
+
+              {/* 4.插入表达式（三元运算符 调用方法） */}
+              <h2>{20 + 30}</h2>
+              <h2>{1 > 0 ? 1 : 2}</h2>
+              <ul>{this.getMovieEls()}</ul>
+            </div>
+          );
+        }
+
+        getMovieEls() {
+          const liEls = this.state.movies.map((movie) => <li>{movie}</li>);
+          return liEls;
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

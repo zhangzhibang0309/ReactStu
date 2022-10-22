@@ -1,0 +1,14 @@
+.tab-control {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  text-align: center;
+}
+
+.tab-control .item {
+  flex: 1;
+}
+
+.tab-control .item.active {
+  color: red;
+}

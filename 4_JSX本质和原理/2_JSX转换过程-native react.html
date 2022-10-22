@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+          };
+        }
+
+        render() {
+          const { msg } = this.state;
+
+          const element = React.createElement(
+            "div",
+            null,
+            /*#__PURE__*/ React.createElement(
+              "div",
+              {
+                className: "header",
+              },
+              "header"
+            ),
+            /*#__PURE__*/ React.createElement(
+              "div",
+              {
+                className: "content",
+              },
+              /*#__PURE__*/ React.createElement("div", null, "banner"),
+              /*#__PURE__*/ React.createElement(
+                "ul",
+                null,
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E1"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E2"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E3"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E4"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E5"
+                )
+              )
+            ),
+            /*#__PURE__*/ React.createElement(
+              "div",
+              {
+                className: "footer",
+              },
+              "footer"
+            )
+          );
+
+          return element;
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(React.createElement(App, null));
+    </script>
+  </body>
+</html>

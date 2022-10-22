@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+          };
+        }
+
+        render() {
+          const { msg } = this.state;
+
+          // 1.jsx结构只能有一个根元素
+          // 2.jsx结构一般回在最外层包裹一个()
+          // 3.jsx可以是但标签，但标签必须/>结尾
+          return (
+            <div>
+              <h2>current counter:{counter}</h2>
+              <button onClick={this.increment}>+1</button>
+              <button onClick={this.decrement}>-1</button>
+            </div>
+          );
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

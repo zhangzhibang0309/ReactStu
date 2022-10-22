@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+            title: "hhh",
+            src: "https://catalinazzz.oss-cn-beijing.aliyuncs.com/image/DB6C7EA70E8F599022E1A85135597644.png",
+            isActive: true,
+            objStyle: {
+              color: "blue",
+              fontSize: "20px",
+            },
+          };
+        }
+
+        render() {
+          const { title, src, isActive, objStyle } = this.state;
+
+          // 1.class绑定的写法一：字符串拼接
+          const className = `abc asd ${isActive ? "active" : ""}`;
+          // 2.class绑定的写法二：将所有class放到数组中
+          const classList = ["abc", "asd"];
+          if (isActive) {
+            classList.push("active");
+          }
+
+          return (
+            <div>
+              <h2>绑定属性</h2>
+              {/* 1.绑定全局title属性 */}
+              <h2 title={title}>h2元素</h2>
+              <img src={src} alt="绫波零" />
+
+              {/* 2.绑定class属性：最好使用className */}
+              <h2 className={className}>哈哈哈哈</h2>
+              <h2 className={classList.join(" ")}>哈哈哈哈</h2>
+
+              {/* 3.绑定style属性：绑定对象类型 */}
+              <h2 style={{ color: "red", fontSize: "30px" }}>呵呵呵呵</h2>
+              <h2 style={objStyle}>呵呵呵呵</h2>
+            </div>
+          );
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

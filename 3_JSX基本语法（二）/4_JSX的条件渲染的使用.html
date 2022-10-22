@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+            isShow: false,
+          };
+        }
+
+        btnClick() {
+          this.setState({
+            isShow: !this.state.isShow,
+          });
+        }
+
+        // 当然还有一种方式就是控制display为none来条件渲染
+        render() {
+          const { msg, isShow } = this.state;
+          let showEle = null;
+          if (isShow) {
+            showEle = <h2>啊啊啊啊啊啊</h2>;
+          } else {
+            showEle = <h2>呵呵呵呵呵呵</h2>;
+          }
+          return (
+            <div>
+              {showEle}
+              <button onClick={() => this.btnClick()}>change</button>
+            </div>
+          );
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

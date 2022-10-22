@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+            movies: [
+              "Your Name.",
+              "Smooth Criminal",
+              "Attack On Titan",
+              "Jujutsu Kaisen",
+            ],
+            isActive: true,
+            curIndex: 0,
+          };
+        }
+
+        itemClick(index) {
+          this.setState({
+            curIndex: index,
+          });
+        }
+
+        render() {
+          const { msg, movies, isActive, curIndex } = this.state;
+          const liEls = movies.map((item, index) => (
+            <li
+              className={index === curIndex ? "active" : ""}
+              key={item}
+              onClick={() => this.itemClick(index)}
+            >
+              {item}
+            </li>
+          ));
+          return (
+            <div>
+              <ul>{liEls}</ul>
+            </div>
+          );
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

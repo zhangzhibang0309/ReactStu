@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+            counter: 100,
+          };
+        }
+
+        btn1Click() {
+          this.setState({
+            counter: 111,
+          });
+        }
+        btn2Click = () => {
+          this.setState({
+            counter: 222,
+          });
+        };
+        btn3Click() {
+          this.setState({
+            counter: 333,
+          });
+        }
+
+        render() {
+          const { counter } = this.state;
+
+          return (
+            <div>
+              {/* 1.this绑定方式：bind绑定 */}
+              <button onClick={this.btn1Click.bind(this)}>button1</button>
+              <br />
+
+              {/* 2.this绑定方式：es6 class field */}
+              <button onClick={this.btn2Click}>button2</button>
+              <br />
+
+              {/* 3.this绑定方式：直接传入一个箭头函数（重要） */}
+              <button onClick={() => this.btn3Click()}>button3</button>
+
+              <h2>current count:{counter}</h2>
+            </div>
+          );
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 类组件
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: "hello",
+            counter: 100,
+          };
+        }
+
+        btnClick(e, name, age) {
+          console.log(e);
+          this.setState({
+            msg: `${name} ${age}`,
+          });
+        }
+
+        render() {
+          const { msg } = this.state;
+
+          return (
+            <div>
+              {/* 1.event参数的传递 */}
+              <button onClick={this.btnClick.bind(this)}>按钮1</button>
+              <button onClick={(e) => this.btnClick(e)}>按钮2</button>
+              <br />
+
+              {/* 2.额外参数的传递 */}
+              <button onClick={this.btnClick.bind(this, "kobe", 30, event)}>
+                {" "}
+                {/* 这种方式的话 参数接收比较诡异 最后一个参数才是event 所以不推荐 */}
+                按钮1
+              </button>
+              <button onClick={(e) => this.btnClick(e, "kobe", 30)}>
+                按钮2
+              </button>
+
+              <h2>current msg:{msg}</h2>
+            </div>
+          );
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
