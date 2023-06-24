@@ -25,6 +25,7 @@ export class Main extends Component {
       <div>
         <div>Main</div>
         <MainBanner bannerList={bannerList} title="banner" />
+        <MainBanner />
         <MainProductList productionList={productionList} />
       </div>
     );
