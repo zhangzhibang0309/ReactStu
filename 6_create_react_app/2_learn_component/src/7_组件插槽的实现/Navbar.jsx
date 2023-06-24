@@ -6,6 +6,7 @@ export class Navbar extends Component {
     console.log(children);
     return (
       <div>
+        <p>children插槽</p>
         <div>
           leftdiv
           <div>{children[0]}</div>
